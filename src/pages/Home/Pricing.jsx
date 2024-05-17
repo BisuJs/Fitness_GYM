@@ -4,6 +4,7 @@ import CardComp from '../../component/Card';
 import ButtonComp from '../../component/Button';
 import {useTheme }from '@mui/material';
 import { tokens } from '../../theme';
+import {motion} from 'framer-motion'
 const Pricing = () => {
     const theme=useTheme();
     const color=tokens(theme.palette.mode)
@@ -47,8 +48,8 @@ const Pricing = () => {
 ]
     
   return (
-    <Box display='flex' justifyContent={'center'} flexDirection={'column'} alignItems="center" paddingY={'2rem'}>
-    <Box sx={{dispaly:'flex',justifyContent:'center',alignItems:'center'}}>
+    <Box display='flex' justifyContent={'center'} flexDirection={'column'} alignItems="center" paddingY={'2rem'} viewport={{once:true}}>
+    <motion.Box initial={{opacity:0,y:'40%'}} whileInView={{opacity:1,y:'0'}} transition={{duration:1}} viewport={{once:true}} sx={{dispaly:'flex',justifyContent:'center',alignItems:'center'}}>
         <Typography variant="h1" sx={{textTransform:'capitalize',fontWeight:'bold',textAlign:'center',paddingBottom:'1rem'}}>
     Pricing Plan
         </Typography>
@@ -56,8 +57,9 @@ const Pricing = () => {
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia reprehenderit velit aperiam 
             odit asperiores necessitatibus saepe molestiae ipsam dicta eos.
         </Typography>
-    </Box>
-    <Box display='flex' gap='1rem'>
+    </motion.Box>
+    <motion.Box initial={{opacity:0,y:'40%'}} whileInView={{opacity:1,y:'0'}} transition={{duration:1}} viewport={{once:true}}>
+        <Box display='flex' gap='1rem'>
         {
             priceListing?.map((item)=>(
             <CardComp sx={{minWidth:'20vw',borderRadius:'1rem',':hover':{transform:'scale(1.1)',border:`1px solid ${color.greenAccent[500]}`,transition:'all',transitionTimingFunction:'ease-in-out',transitionDuration:'150ms',cursor:'pointer'}}}>
@@ -75,7 +77,8 @@ const Pricing = () => {
     </CardComp>
             ))
         }
-    </Box>
+        </Box>
+    </motion.Box>
     
     </Box>
   )

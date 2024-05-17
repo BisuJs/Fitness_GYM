@@ -2,7 +2,7 @@ import React from 'react'
 import Link from '@mui/material/Link'
 import Typography  from '@mui/material/Typography'
 
-const MenuItem = ({message,path,sx='',setSelected}) => {
+const MenuItem = ({message,path,sx='',setSelected='false'}) => {
 
   return (
 <Link href={path} sx={{textDecoration:'none'}} onClick={()=>setSelected(message)}>

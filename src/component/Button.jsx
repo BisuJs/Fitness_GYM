@@ -1,9 +1,8 @@
 import React from 'react'
 import Button from '@mui/material/Button'
-const ButtonComp = ({message,styles,icon=''}) => {
-  console.log(icon)
+const ButtonComp = ({message,styles,icon='',...rest}) => {
   return (
-    <Button sx={styles}>{message}{' '}{icon}</Button>
+    <Button sx={styles} {...rest}>{message}{' '}{icon}</Button>
 )
 }
 

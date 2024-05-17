@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import Container from '@mui/material/Container'
 import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
@@ -12,37 +12,43 @@ import { useContext } from 'react'
 import { ColorModeContext } from '../../theme.js'
 import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
-
 import Button from '@mui/material/Button';
 const Navbar = () => {
-  // const {themeType,theme,toogleType}=useThemeContext();
   const [selected,setSelected]=useState('home')
   const theme=useTheme()
   const colorMode=useContext(ColorModeContext);
   const colors=tokens(theme.palette.mode)
+  console.log(colors)
   console.log(colors.greenAccent[400],'greenAccent ')
+ 
   const navbarItem=[{
     id:1,
     title:'home',
     path:'/'
   },{
     id:2,
-    title:'program',
-    path:'/program',
+    title:'about',
+    path:'/about',
     
   },
+  {
+id:4,
+title:'service',
+path:'/service'
+  },
 {
-  id:1,
-  title:'choose us',
-  path:'/choose-us'
+  id:5,
+  title:'Blog',
+  path:'/blog'
 },
 {
-  id:2,
-  title:'pricing',
-  path:'/pricing'
+  id:6,
+  title:'Contact Us',
+  path:'#contact-us',
+  
 }]
   return (
-    <Box sx={{width:'80vw',mx:'auto',position:'absolute',top:'2'}}>
+    <Box sx={{width:'80vw',mx:'auto'}}>
       <Box component='div' sx={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
       <Box component='div'>
         <Link href="/" sx={{textDecoration:'none'}}>
@@ -76,7 +82,6 @@ const Navbar = () => {
       }}}/>
     </Box>
     </Box>
-    
     </Box>
       </Box>
   )
