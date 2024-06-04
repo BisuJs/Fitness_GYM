@@ -1,22 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState,useCallback } from 'react'
 
 const FormComponent = (WrappedComponent) => {
-  return function (props){
+  const FormComponent= (props)=>{
     const [formData,setFormData]=useState({});
-    const [errors,setErrors]=useState({});
-    const handleChange=(event)=>{
+  const [errors,setErrors]=useState({});
+  const validate=(name,value)=>{
+    return value?"":`${name} is required.`
+  }
+    const handleChange=useCallback((event)=>{
         const {name,value}=event.target;
         const newFormData={...formData,[name]:value};
         const newErrors={...errors,[name]:validate(name,value)}
         setFormData(newFormData);
-        setErrors(newErrors)
-    }
-    const validate=(name,value)=>{
-        return value?"":`${name} is required.`
-      }
-    const handleSubmit=()=>{
-        console.log(formData,'submitting the form !')
-    }  
+        setErrors(newErrors);
+    },[validate])
+    
+    const handleSubmit=useCallback(()=>{
+        if(props.onSubmit){
+          props.onSubmit(formData)
+        }
+        return formData;
+    },[formData,props]) 
     return <WrappedComponent
     {...props}
     handleChange={handleChange}
@@ -26,7 +30,7 @@ const FormComponent = (WrappedComponent) => {
     ></WrappedComponent>  
   }
   
-
+return FormComponent;
 }
 
-export default FormComponent
+export default FormComponent;

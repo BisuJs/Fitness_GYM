@@ -107,7 +107,7 @@ const OurTeam = () => {
               transform: `translateX(-${
                 (currentPosition) *100
               }%)`,
-              transition: "transform 2s ease-in-out",
+              transition: "transform 1s ease-in-out",
             }}
           >
             <Box

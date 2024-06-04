@@ -43,6 +43,9 @@ export default function SideBar(props) {
       setMobileOpen(!mobileOpen);
     }
   };
+  const handleLogout=()=>{
+    localStorage.removeItem('admin_token');
+  }
 const sidebarList=[{
   id:2,
   name:'Dashboard',
@@ -80,7 +83,11 @@ const sidebarList=[{
 },{
   id:10,
   name:'Logout',
-  link:'/admin/login'
+  render:()=>(
+    <Typography onClick={handleLogout} sx={{fontSize:'1rem',color:colors.grey[100],fontWeight:'600'}}>
+Logout
+    </Typography>
+  )
 }]
   const drawer = (
     <Box backgroundColor={colors?.primary[400]}>
@@ -99,7 +106,7 @@ const sidebarList=[{
     >
       {sidebarList?.map((item, index) => (
           <ListItemButton key={item} sx={{width:'100%'}} >
-              {item?.innerList ? <Dropdown title={item?.name} dropdownList={item?.innerList}/>:<ListItemText as={Link} to={item?.link} sx={{textDecoration:'none',color:colors.grey[100]}} primary={<Typography sx={{fontSize:'1rem',fontWeight:'600'}}>{item.name}</Typography>}/>}
+              {item?.innerList ? <Dropdown title={item?.name} dropdownList={item?.innerList}/>: <ListItemText as={Link} to={item?.link} sx={{textDecoration:'none',color:colors.grey[100]}} primary={<Typography sx={{fontSize:'1rem',fontWeight:'600'}}>{item.name!=='Logout'?item.name:item.render() }</Typography>}/>}
           </ListItemButton>
         ))}
 

@@ -17,7 +17,11 @@ import Dashboard from './pages/admin/dashboard/index.jsx';
 import Post from './pages/admin/post/index.jsx';
 import AdminPricing from './pages/admin/pricing/index.jsx';
 import AdminServicing from './pages/admin/service/index.jsx';
+// import Login from './pages/admin/login/index.jsx';
 import Login from './pages/admin/login/index.jsx';
+import CreatePost from './pages/admin/post/CreatePost.jsx';
+import CreatePricing from './pages/admin/pricing/CreatePricing.jsx';
+import CreateService from './pages/admin/service/CreateService.jsx';
 function App() {
   const [theme,colorMode]=useMode();
   
@@ -41,7 +45,14 @@ function App() {
 
   <Route path='/admin' element={<Admin/>}>
     <Route path='/admin/dashboard' element={<Dashboard/>}/>
-    <Route path='/admin/post' element={<Post/>}/>
+    <Route path='/admin/post' element={<Post/>}>
+      </Route>
+      <Route path='/admin/post/create' element={<CreatePost/>}/>
+      <Route path='/admin/price/create' element={<CreatePricing/>}/>
+      <Route path='/admin/service/create' element={<CreateService/>}/>
+
+
+
     <Route path='/admin/price' element={<AdminPricing/>}/>
     <Route path='/admin/service' element={<AdminServicing/>}/>
   </Route>
